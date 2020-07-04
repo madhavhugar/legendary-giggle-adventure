@@ -6,7 +6,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.example</groupId>
-  <artifactId>java-maven-junit-helloworld</artifactId>
+  <artifactId>java-maven-planetary-adventure</artifactId>
   <version>2.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
@@ -24,6 +24,7 @@
     <hamcrest.version>1.3</hamcrest.version>
     <mockito.version>2.21.0</mockito.version>
     <jacoco.plugin.version>0.8.5</jacoco.plugin.version>
+
   </properties>
 
   <dependencies>
@@ -56,6 +57,13 @@
       <artifactId>mockito-junit-jupiter</artifactId>
       <version>${mockito.version}</version>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+      <version>3.10</version>
+    </dependency>
+
   </dependencies>
 
   <build>

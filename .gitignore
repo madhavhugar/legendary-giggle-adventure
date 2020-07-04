@@ -19,3 +19,6 @@ Thumbs.db
 
 # Various text editor swap files, etc.
 .*.swp
+
+# saved game
+saved-adventure.ser
