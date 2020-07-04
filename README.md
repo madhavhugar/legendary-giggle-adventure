@@ -26,3 +26,11 @@ This example follows the following basic conventions:
 | **resides in:** | `src/test/java/*Test.java` | `src/test/java/*IT.java` |
 | **executes in Maven phase:** | test | verify |
 | **handled by Maven plugin:** | [surefire](http://maven.apache.org/surefire/maven-surefire-plugin/) | [failsafe](http://maven.apache.org/surefire/maven-failsafe-plugin/) |
+
+## TODO
+
+- [] Implement saving functionality
+- [] Address all TODOs in code
+- [] Consistent code
+    - ensure this is not used within classes
+- [] Fix the planet display
