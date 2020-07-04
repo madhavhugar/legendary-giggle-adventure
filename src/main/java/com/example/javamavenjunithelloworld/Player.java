@@ -1,17 +1,23 @@
 package com.example.javamavenjunithelloworld;
 
-public class Player {
+
+import java.io.Serializable;
+
+public class Player implements Serializable {
     String name;
     private int health;
     private int experience;
     private boolean alive;
-//    private powerUp
+    private Position currentPosition;
 
-    // TODO: optionally use builder pattern here
     public Player(String name) {
         this.name = name;
         this.health = 100;
         this.alive = true;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public int getHealth() {
@@ -39,5 +45,17 @@ public class Player {
 
     public boolean isAlive() {
         return alive;
+    }
+
+    public Position getCurrentPosition() {
+        return currentPosition;
+    }
+
+    public void setCurrentPosition(Position position) {
+        this.currentPosition = position;
+    }
+
+    public String getPlayerStats() {
+        return "Health: " + health + "%\tExperience: " + experience + " XP";
     }
 }

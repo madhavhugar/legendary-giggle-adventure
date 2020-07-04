@@ -8,7 +8,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
  * Unit test for Player.
- * <p/>
  */
 public class PlayerTest {
 
