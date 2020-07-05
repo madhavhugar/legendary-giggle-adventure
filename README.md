@@ -34,3 +34,10 @@ This example follows the following basic conventions:
 - [] Consistent code
     - ensure this is not used within classes
 - [] Fix the planet display
+
+## Layout
+
+InGameMenu => Adventure
+
+Adventure => \[Player] \[UniverseMap]
+
