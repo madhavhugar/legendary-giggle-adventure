@@ -1,6 +1,7 @@
 package com.example.javamavenjunithelloworld;
 
 
+//TODO enums with values replace
 public final class Planet {
     public static final int HOME = 0;
     public static final int ALLY = 1;
