@@ -1,18 +1,23 @@
 package com.example.javamavenjunithelloworld;
 
 
+import com.example.javamavenjunithelloworld.map.Position;
+
 import java.io.Serializable;
 
 public class Player implements Serializable {
-    String name;
+    private static final long serialVersionUID = 102L;
+    private String name;
     private int health;
     private int experience;
     private boolean alive;
     private Position currentPosition;
+    public static final int MIN_HEALTH = 0;
+    public static final int MAX_HEALTH = 100;
 
     public Player(String name) {
         this.name = name;
-        this.health = 100;
+        this.health = MAX_HEALTH;
         this.alive = true;
     }
 
@@ -25,11 +30,11 @@ public class Player implements Serializable {
     }
 
     public void setHealth(int health) {
-        if (health <= 0) {
+        if (health <= MIN_HEALTH) {
             this.alive = false;
-            this.health = 0;
-        } else if (health > 100) {
-            this.health = 100;
+            this.health = MIN_HEALTH;
+        } else if (health > MAX_HEALTH) {
+            this.health = MAX_HEALTH;
         } else {
             this.health = health;
         }
@@ -56,6 +61,6 @@ public class Player implements Serializable {
     }
 
     public String getPlayerStats() {
-        return "Health: " + health + "%\tExperience: " + experience + " XP";
+        return String.format("Health: %d%%\tExperience: %d XP", health, experience);
     }
 }
