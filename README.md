@@ -65,10 +65,11 @@ You cannot move beyond the edge of the universe.
 
 ## Project improvements
 
-- Avoid delay within unit test by mocking miniDelay functionality to not sleep during tests 
+- Avoid delay within unit test by mocking miniDelay functionality to not sleep during tests
 - Command pattern on Adventure to undo previous move
 - Include logging
 - Integration tests
+- Improve test coverage 
 
 ## Codebase layout
 
@@ -81,3 +82,7 @@ You cannot move beyond the edge of the universe.
 * Unit tests via [JUnit 5](https://junit.org/junit5/)
 * Code coverage reports via [JaCoCo](https://www.jacoco.org/jacoco/)
 * A Maven build that puts it all together
+
+## Coverage
+
+![](./codecoverage.png)
