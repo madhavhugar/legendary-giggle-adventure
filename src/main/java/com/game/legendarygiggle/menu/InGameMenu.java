@@ -73,9 +73,7 @@ public class InGameMenu implements MenuInterface {
         System.out.println("\n" + adventure.getStatistics() + "\n");
     }
 
-    private String acceptInput(InputStream in) {
-        // TODO move scanner above
-        Scanner input = new Scanner(in);
+    private String acceptInput(Scanner input) {
         String userInput = input.nextLine();
         if (!menuItems.containsKey(userInput)) {
             return Config.INVALID_OPTION;
@@ -91,10 +89,11 @@ public class InGameMenu implements MenuInterface {
 
     @Override
     public void render(InputStream in) {
+        Scanner input = new Scanner(in);
         boolean done = false;
         while(!done) {
             printMenu();
-            String userInput = acceptInput(in);
+            String userInput = acceptInput(input);
             done = processInput(userInput);
             Screen.clearScreen(1);
         }

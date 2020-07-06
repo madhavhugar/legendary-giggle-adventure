@@ -33,8 +33,7 @@ public class MainMenu implements MenuInterface {
         System.out.println();
     }
 
-    private String acceptInput(InputStream in) {
-        Scanner input = new Scanner(in); // TODO move scanner to render ideally or use as class property
+    private String acceptInput(Scanner input) {
         String userInput = input.nextLine();
         if (!menuItems.containsKey(userInput)) {
             return Config.INVALID_OPTION;
@@ -50,10 +49,11 @@ public class MainMenu implements MenuInterface {
 
     @Override
     public void render(InputStream in) {
+        Scanner input = new Scanner(in);
         boolean done = false;
         while(!done) {
             printMenu();
-            String userInput = acceptInput(in);
+            String userInput = acceptInput(input);
             done = processInput(userInput);
             Screen.clearScreen();
         }
