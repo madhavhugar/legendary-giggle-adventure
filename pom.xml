@@ -5,8 +5,8 @@
 
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.example</groupId>
-  <artifactId>java-maven-planetary-adventure</artifactId>
+  <groupId>com.game</groupId>
+  <artifactId>legendary-giggle-adventure</artifactId>
   <version>2.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
