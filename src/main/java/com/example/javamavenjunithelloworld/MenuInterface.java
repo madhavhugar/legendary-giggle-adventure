@@ -1,6 +1,8 @@
 package com.example.javamavenjunithelloworld;
 
+import java.io.InputStream;
+
 // TODO include documentation for interfaces
-public interface Menu {
-    void render();
+public interface MenuInterface {
+    void render(InputStream in);
 }

@@ -1,20 +1,21 @@
 package com.example.javamavenjunithelloworld;
 
+import com.example.javamavenjunithelloworld.utilities.Screen;
 import org.apache.commons.lang3.tuple.Pair;
 
-import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.function.BooleanSupplier;
 
 
-public class InGameMenu implements Menu {
+public class InGameMenu implements MenuInterface {
     private String description;
     private Map<String, Pair<String, BooleanSupplier>> menuItems;
-    private Adventure adventure;
+    private AdventureInterface adventure;
 
-    public InGameMenu(Adventure adventure) {
+    public InGameMenu(AdventureInterface adventure) {
         this.adventure = adventure;
         this.description = adventure.getDescription();
         menuItems = new HashMap<>();
@@ -34,19 +35,13 @@ public class InGameMenu implements Menu {
             System.out.println("\nMoving South...");
             return checkGameStatus(adventure.move(Direction.SOUTH));
         }));
-        menuItems.put("save", Pair.of("save: saveAdventure", () -> {
-            try {
-                adventure.save();
-            } catch (IOException e) {
-                System.out.println("Could not save the game!" + e);
-            }
-            return false;
-        }));
+        menuItems.put("save", Pair.of("save: saveAdventure", () ->
+            adventure.save(Config.SAVE_GAME_FILE)));
         menuItems.put("exit", Pair.of("exit: exitAdventure", () -> {
             System.out.println("\nExiting adventure...");
             return true;
         }));
-        menuItems.put(Utilities.INVALID_OPTION, Pair.of("", () -> {
+        menuItems.put(Config.INVALID_OPTION, Pair.of("", () -> {
             System.out.println("\nInvalid option selected, select a valid option..\n");
             return false;
         }));
@@ -60,11 +55,7 @@ public class InGameMenu implements Menu {
     }
 
     private void renderEndGame() {
-        Scanner input = new Scanner(System.in);
-        System.out.println("----------------------------------------------------------------------------------------");
-        System.out.println("\n\nthat was a quick ending to your adventure, perhaps you pushed it a little too far...");
-        System.out.println("\n\n \t\t\t xxx Game Over xxx\n\nPress any key to continue");
-        input.nextLine();
+        adventure.endGame();
     }
 
     private void printMenu() {
@@ -74,15 +65,17 @@ public class InGameMenu implements Menu {
                 System.out.println(item.getLeft());
             }
         }
-        adventure.showPlayerVision();
+        String playerVision = adventure.showPlayerVision();
+        System.out.println(playerVision);
         System.out.println("\n" + adventure.getStatistics() + "\n");
     }
 
-    private String acceptInput() {
-        Scanner input = new Scanner(System.in);
+    private String acceptInput(InputStream in) {
+        // TODO move scanner above
+        Scanner input = new Scanner(in);
         String userInput = input.nextLine();
         if (!menuItems.containsKey(userInput)) {
-            return Utilities.INVALID_OPTION;
+            return Config.INVALID_OPTION;
         }
         return userInput;
     }
@@ -94,13 +87,13 @@ public class InGameMenu implements Menu {
     }
 
     @Override
-    public void render() {
+    public void render(InputStream in) {
         boolean done = false;
         while(!done) {
             printMenu();
-            String userInput = acceptInput();
+            String userInput = acceptInput(in);
             done = processInput(userInput);
-            Utilities.clearScreen(1);
+            Screen.clearScreen(1);
         }
     }
 }
