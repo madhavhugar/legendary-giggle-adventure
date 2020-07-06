@@ -1,4 +1,4 @@
-package com.example.javamavenjunithelloworld;
+package com.example.javamavenjunithelloworld.map;
 
 import java.io.Serializable;
 import java.util.Objects;
