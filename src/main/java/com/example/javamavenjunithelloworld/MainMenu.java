@@ -1,14 +1,17 @@
 package com.example.javamavenjunithelloworld;
 
 
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+
+import com.example.javamavenjunithelloworld.utilities.Screen;
 import org.apache.commons.lang3.tuple.Pair;
 import java.util.function.BooleanSupplier;
 
 
-public class MainMenu implements Menu {
+public class MainMenu implements MenuInterface {
     private String gameTitle;
     private Map<String, Pair<String, BooleanSupplier>> menuItems;
 
@@ -29,11 +32,11 @@ public class MainMenu implements Menu {
         System.out.println();
     }
 
-    private String acceptInput() {
-        Scanner input = new Scanner(System.in);
+    private String acceptInput(InputStream in) {
+        Scanner input = new Scanner(in); // TODO move scanner to render ideally or use as class property
         String userInput = input.nextLine();
         if (!menuItems.containsKey(userInput)) {
-            return Utilities.INVALID_OPTION;
+            return Config.INVALID_OPTION;
         }
         return userInput;
     }
@@ -45,13 +48,13 @@ public class MainMenu implements Menu {
     }
 
     @Override
-    public void render() {
+    public void render(InputStream in) {
         boolean done = false;
         while(!done) {
             printMenu();
-            String userInput = acceptInput();
+            String userInput = acceptInput(in);
             done = processInput(userInput);
-            Utilities.clearScreen();
+            Screen.clearScreen();
         }
     }
 }
