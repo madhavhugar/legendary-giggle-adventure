@@ -1,18 +1,16 @@
 package com.example.javamavenjunithelloworld;
 
+import com.example.javamavenjunithelloworld.map.UniverseMap;
+import com.example.javamavenjunithelloworld.utilities.Screen;
 import org.apache.commons.lang3.tuple.Pair;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.function.BooleanSupplier;
 import java.util.HashMap;
 
 /**
- * A very basic program that demonstrates the use of JUnit tests. The tests include a sample unit test and an
- * integration test.
+ * GameApp to orchestrate legendary giggle adventure
  */
 public class GameApp {
     public static Map<String, Pair<String, BooleanSupplier>> menuItems;
@@ -29,46 +27,15 @@ public class GameApp {
     };
     static UniverseMap map = new UniverseMap(basicMap, planets);
 
-    private static void startNewAdventure() {
-        Scanner input = new Scanner(System.in);
-        System.out.println("\nStarting a new adventure...");
-        Utilities.clearScreen(1);
-        System.out.println("\nEnter your character's name:\n");
-        String characterName = input.nextLine();
-        Player player = new Player(characterName);
-        System.out.println("\nLoading " + player.name + "'s Adventure...\n");
-        Utilities.clearScreen(2);
-        Adventure adventure = new Adventure(player, map);
-        InGameMenu gameMenu = new InGameMenu(adventure);
-        gameMenu.render();
-    }
-
-    private static void loadAdventure() {
-        try {
-            FileInputStream file = new FileInputStream(Utilities.SAVE_GAME_FILE);
-            ObjectInputStream in = new ObjectInputStream(file);
-
-            // Method for deserialization of object
-            Adventure savedAdventure = (Adventure)in.readObject();
-            in.close();
-            file.close();
-            InGameMenu gameMenu = new InGameMenu(savedAdventure);
-            gameMenu.render();
-        } catch (IOException | ClassNotFoundException e) {
-            System.out.println("Could not find any saved adventure to resume...");
-        }
-    }
-
-    public static void main(String[] args) {
+    private static Map<String, Pair<String, BooleanSupplier>> getMenuItems() {
         menuItems = new HashMap<>();
-
         menuItems.put("1", Pair.of("1. Start a new adventure", () -> {
             startNewAdventure();
             return false;
         }));
         menuItems.put("2", Pair.of("2. Resume adventure", () -> {
             System.out.println("\nLoading adventure...");
-            Utilities.clearScreen(1);
+            Screen.clearScreen(1);
             loadAdventure();
             return false;
         }));
@@ -76,12 +43,39 @@ public class GameApp {
             System.out.println("\nExiting game...");
             return true;
         }));
-        menuItems.put(Utilities.INVALID_OPTION, Pair.of("", () -> {
+        menuItems.put(Config.INVALID_OPTION, Pair.of("", () -> {
             System.out.println("\nInvalid option selected, select a valid option..\n");
             return false;
         }));
+        return menuItems;
+    }
 
-        MainMenu menu = new MainMenu("Rick and Morty Adventures", menuItems);
-        menu.render();
+    private static void startNewAdventure() {
+        Scanner input = new Scanner(System.in);
+        System.out.println("\nStarting a new adventure...");
+        Screen.clearScreen(1);
+        System.out.println("\nEnter your character's name:\n");
+        String characterName = input.nextLine();
+        Player player = new Player(characterName);
+        System.out.println("\nLoading " + player.getName() + "'s Adventure...\n");
+        Screen.clearScreen(2);
+        Adventure adventure = new Adventure(player, map);
+        InGameMenu gameMenu = new InGameMenu(adventure);
+        gameMenu.render(System.in);
+    }
+
+    public static void loadAdventure() {
+        Adventure savedAdventure = Adventure.load(Config.SAVE_GAME_FILE);
+        if (savedAdventure == null) {
+            return;
+        }
+        InGameMenu gameMenu = new InGameMenu(savedAdventure);
+        gameMenu.render(System.in);
+    }
+
+    public static void main(String[] args) {
+        Map<String, Pair<String, BooleanSupplier>> menuItems = getMenuItems();
+        MenuInterface menuInterface = new MainMenu("Rick and Morty Adventures", menuItems);
+        menuInterface.render(System.in);
     }
 }
