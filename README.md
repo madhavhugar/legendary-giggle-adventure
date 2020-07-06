@@ -2,6 +2,9 @@
 
 Legendary Giggle is an adventure game inspired by the TV series Rick and Morty, where the duo have an interstellar adventure. 
 
+![](./legandary-giggle.gif)
+
+
 In this console game, you set out on an adventure from the edge of the universe. 
 You will come across friendly planets, enemy planets that seek revenge, neutral planets that ignore your presence, 
 and your home planet that you left a long time ago.
