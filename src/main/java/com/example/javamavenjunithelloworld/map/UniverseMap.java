@@ -1,6 +1,9 @@
-package com.example.javamavenjunithelloworld;
+package com.example.javamavenjunithelloworld.map;
 
 
+import com.example.javamavenjunithelloworld.Direction;
+import com.example.javamavenjunithelloworld.Planet;
+import com.example.javamavenjunithelloworld.map.Position;
 import com.example.javamavenjunithelloworld.utilities.Matrix;
 import com.example.javamavenjunithelloworld.utilities.Screen;
 
@@ -48,7 +51,7 @@ public class UniverseMap implements Serializable {
                 getPlanetType(midEast),
                 getPlanetName(midEast));
 
-        Position mid = new Position(i, j);
+        Position mid = new Position(playerPosition);
         String midPlanet =  printBasedOnPlanetType(
                 getPlanetType(mid),
                 Screen.ANSI_BLACK_BACKGROUND +
