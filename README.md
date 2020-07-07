@@ -11,10 +11,10 @@ and your home planet that you left a long time ago.
 
 At the moment, the game does not have an end game goal. However, the idea is to gain lots of experience while staying alive.
 
-- On your home planet, you gain full health, but gain no experience.
-- On an ally planet, you gain some health, and some experience.
-- On an enemy planet, you lose health, but also gain quite some experience.
-- On a neutral planet, you gain no health nor experience.
+- On your home planet(Green), you gain full health, but gain no experience.
+- On an ally planet(Blue), you gain some health, and some experience.
+- On an enemy planet(Red), you lose health, but also gain quite some experience.
+- On a neutral planet(White), you gain no health nor experience.
 
 Your spaceship has 4 windows, one in each direction North, East, West and South 
 and that limits your vision to only 4 planets around you. 
