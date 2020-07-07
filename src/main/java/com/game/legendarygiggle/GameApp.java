@@ -21,14 +21,20 @@ public class GameApp {
     public static Map<String, Pair<String, BooleanSupplier>> menuItems;
 
     static int [][] basicMap = {
-            {1, 2, 0},
-            {1, 2, 1},
-            {2, 1, 3},
+            {1, 2, 0, 2, 3, 1},
+            {1, 2, 2, 2, 2, 1},
+            {2, 1, 3, 2, 3, 3},
+            {1, 2, 2, 2, 2, 1},
+            {1, 2, 1, 2, 3, 1},
+            {2, 1, 3, 2, 3, 3},
     };
     static String [][] planets = {
-            {"Mercury", "Venus", "Earth"},
-            {"Gaspra", "Mars", "Eros"},
-            {"Jupiter", "Pandia", "Valetudo"},
+            {"Mercury", "Venus", "Earth", "Mercitron", "Uranitron", "Fearon"},
+            {"Gaspra", "Mars", "Eros", "Astrieon", "Mextron", "Texitron"},
+            {"Jupiter", "Pandia", "Valetudo", "Ramonton", "Hellton", "Kirton"},
+            {"Soccoalara", "Chilveuc", "Bonoria", "Nongora", "Kunerth", "Cacarro"},
+            {"Gnooria", "Bapupra", "Zolla", "Lichi", "Xubenope", "Katrides"},
+            {"Thiestea", "Aneron", "Ieclite", "Drabistea", "Giri 60BX", "Zealara"},
     };
     static UniverseMap map = new UniverseMap(basicMap, planets);
 
@@ -80,7 +86,7 @@ public class GameApp {
 
     public static void main(String[] args) {
         Map<String, Pair<String, BooleanSupplier>> menuItems = getMenuItems();
-        MenuInterface menuInterface = new MainMenu("Rick and Morty Adventures", menuItems);
+        MenuInterface menuInterface = new MainMenu("The Legendary Giggle Adventure", menuItems);
         menuInterface.render(System.in);
     }
 }
